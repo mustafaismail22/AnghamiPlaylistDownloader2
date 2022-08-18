@@ -1,0 +1,38 @@
+{
+  "name": "AnghamiPlaylistDownloader",
+  "author": "Mustafa Ismail",
+  "version": "1.3.0",
+  "description": "Anghami Playlist Downloader",
+  "homepage": "",
+  "license": "ISC",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "node ./scripts/esbuild.js dev && npm run start",
+    "build": "npm run build:rm && npm run build:main && npm run build:renderer && npm run build:assets",
+    "build:main": "node ./scripts/esbuild.js prod",
+    "build:renderer": "cd ./src/renderer-2 && npm run build",
+    "build:assets": "cp -r ./src/assets ./dist",
+    "build:rm": "rm -rf dist && mkdir dist",
+    "bundle": "npm run bundle:rm &&  node ./electron-builder.js",
+    "bundle:rm": "rm -rf ./release"
+  },
+  "dependencies": {
+    "anghami-bot": "./anghami-bot-1.2.2.tgz",
+    "dateformat": "^5.0.2",
+    "fs-jetpack": "^4.3.0",
+    "is-online": "^9.0.1",
+    "lodash": "^4.17.15",
+    "progress": "^2.0.3",
+    "puppeteer-core": "^12.0.1",
+    "puppeteer-in-electron": "^3.0.1",
+    "sanitize-filename": "^1.6.3",
+    "which": "^2.0.2"
+  },
+  "devDependencies": {
+    "electron": "^16.0.3",
+    "electron-builder": "22.14.10",
+    "electron-devtools-installer": "^3.2.0",
+    "esbuild": "^0.14.14"
+  }
+}
